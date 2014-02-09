@@ -1,0 +1,7 @@
+The latest updates happening in a month
+
+<ul>
+  <% @activities.each do |activity| %>
+    <%= render 'activities/activity', :activity => activity %>
+  <% end %>
+</ul>

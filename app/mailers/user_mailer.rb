@@ -15,4 +15,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail :to => user.email, :subject => "Welcome"
   end
+
+  def monthly_updates(user, activities)
+    @activities = activities
+    @user = user
+    mail :to => user.email, :subject => "The latest updates happening"
+  end
 end

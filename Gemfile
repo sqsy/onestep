@@ -64,3 +64,6 @@ gem 'alipay_dualfun'
 
 # use for pagination
 gem 'kaminari'
+
+# use for cron jobs
+gem 'whenever', :require => false

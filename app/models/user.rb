@@ -70,6 +70,17 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
+  def self.send_monthly_updates
+    date = Time.zone.now
+    if date.month == 2
+      activities = Activity.where(created_at: (date - 28.days) .. date).reverse
+    else
+      activities = Activity.within_range(date).reverse
+    end
+
+    User.all.each { |u| UserMailer.monthly_updates(u, activities).deliver } if activities.present?
+  end
+
   def has_avatar?
     self.read_attribute(:avatar).present?
   end
